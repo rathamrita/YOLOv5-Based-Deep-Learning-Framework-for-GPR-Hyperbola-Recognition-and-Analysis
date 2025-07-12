@@ -305,6 +305,57 @@ Wrong Interpretation of Image 3, its a cavity. Should not have detected any hype
 
 Correct Interpretation of Image 4, it didn't detect any hyperbolas
 
+### Detailed Analysis & Why it Happened?
+
+<img width="750" height="305" alt="image" src="https://github.com/user-attachments/assets/64347b86-8f07-4b03-a754-17fb41316854" />
+
+True Positives (Images 1 & 2)
+
+The model correctly identifies hyperbolas from buried utilities — which means:
+
+-> The model is generalizing well beyond the stimulated training set.
+
+-> It successfully recognizes real-world hyperbola shapes despite domain shift.
+
+🔍 Implication: The core representation of subsurface hyperbolas learned from the synthetic data is valid and useful in real-world scenarios.
+
+❌ False Positive (Image 3)
+
+-> In an image with a cavity but no hyperbola, the model incorrectly predicted a hyperbola.
+
+🔎 Why this might happen:
+
+-> Visual artifacts from cavities (especially noisy reflection patterns) might mimic hyperbola shapes.
+
+-> The model has never seen cavity samples during training and misclassified the pattern.
+
+-> Overconfidence due to lack of negative (non-hyperbola) examples during training.
+
+🧠 What to do:
+
+- Adding cavity/no-hyperbola samples during fine-tuning.
+
+- Including “no object” class or increase dataset diversity for better discrimination.
+
+- Trying postprocessing confidence filtering (e.g., ignore predictions <0.4 confidence).
+
+✅ True Negative (Image 4)
+
+-> Here, the model correctly ignored a cavity without a hyperbola.
+
+💡 This is a good sign: Indicates some level of learned discrimination between hyperbola-like vs. non-hyperbola patterns.
+
+📈 Insights & Next Steps
+
+👍 Strengths : 
+
+-> The model detects real hyperbolas accurately.
+
+-> Generalizes from synthetic → real data for buried utilities.
+
+⚠️ Limitations : 
+
+-> Susceptible to false positives in unfamiliar visual patterns (e.g., cavities).
 
 
 
