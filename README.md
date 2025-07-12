@@ -119,9 +119,9 @@ To prepare:
 
 Randomly split your 2000 augmented images into:
 
-1600 training images + labels (80%)
+1735 training images + labels (80%)
 
-400 validation images + labels (20%)
+434 validation images + labels (20%)
 
 Ensure that:
 
