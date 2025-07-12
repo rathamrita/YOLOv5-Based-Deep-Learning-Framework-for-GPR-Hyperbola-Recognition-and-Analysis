@@ -1,5 +1,5 @@
 # YOLOv5-Based-Deep-Learning-Framework-for-GPR-Hyperbola-Recognition-and-Analysis
-This project uses YOLOv5 to detect hyperbolas in Ground Penetrating Radar (GPR) images, enabling automated identification of buried objects. The pipeline includes data preprocessing, training, evaluation, and visualization for efficient subsurface analysis.
+This project uses YOLOv5 to detect hyperbolas in Ground Penetrating Radar (GPR) images, enabling automated identification of buried objects. The pipeline includes data preprocessing, training, evaluation, and visualization for efficient subsurface analysis. Only the core coding steps are described here, with detailed explanations provided for each. Coding file to be uploaded later.
 ## 1. Dataset Description
 Used 241 stimulated Ground Penetrating Radar (GPR) images.
 
