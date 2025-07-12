@@ -69,7 +69,6 @@ Converted these .xml files into:
 -> .txt format (YOLO format: class x_center y_center width height) for use with YOLOv5. This becomes the labels of each hyperbolas detected.
 The.txt file shouls look like this
 <img width="440" height="292" alt="image" src="https://github.com/user-attachments/assets/04c70a5d-21aa-4ad0-8b49-db1c1c03778d" />
-
 This ensures compatibility with the chosen object detection framework.
 ## 6. Hyperbola Detection using YOLOv5
 ✅ Why Use YOLOv5?
