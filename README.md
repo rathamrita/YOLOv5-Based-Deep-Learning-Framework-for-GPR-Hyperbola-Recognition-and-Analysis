@@ -68,6 +68,7 @@ Converted these .xml files into:
 
 -> .txt format (YOLO format: class x_center y_center width height) for use with YOLOv5. This becomes the labels of each hyperbolas detected.
 The.txt file shouls look like this
+
 <img width="440" height="292" alt="image" src="https://github.com/user-attachments/assets/04c70a5d-21aa-4ad0-8b49-db1c1c03778d" />
 
 This ensures compatibility with the chosen object detection framework.
@@ -75,33 +76,33 @@ This ensures compatibility with the chosen object detection framework.
 ✅ Why Use YOLOv5?
 YOLO (You Only Look Once) is a real-time object detection model known for its:
 
-Speed: YOLOv5 is extremely fast and suitable for high-throughput tasks like scanning large GPR datasets.
+-> Speed: YOLOv5 is extremely fast and suitable for high-throughput tasks like scanning large GPR datasets.
 
-Accuracy: It delivers a good balance between speed and precision, especially with hyperbolic shapes in GPR.
+-> Accuracy: It delivers a good balance between speed and precision, especially with hyperbolic shapes in GPR.
 
-Simplicity: Easy to train, customize, and deploy using PyTorch.
+-> Simplicity: Easy to train, customize, and deploy using PyTorch.
 
-Lightweight: Compared to older models like Faster R-CNN or RetinaNet, YOLOv5 requires less compute power and is easier to optimize.
+-> Lightweight: Compared to older models like Faster R-CNN or RetinaNet, YOLOv5 requires less compute power and is easier to optimize.
 
 Significance of YOLOv5 in This Project
-Detects small, curved patterns (hyperbolas) in cluttered GPR signals.
+-> Detects small, curved patterns (hyperbolas) in cluttered GPR signals.
 
-Works well with 256×256 images — preserving spatial details of hyperbolas.
+-> Works well with 256×256 images — preserving spatial details of hyperbolas.
 
-Supports custom datasets and small object detection — ideal for subsurface signal interpretation.
+-> Supports custom datasets and small object detection — ideal for subsurface signal interpretation.
 
-Helps with automated subsurface utility detection, reducing manual inspection effort.
+-> Helps with automated subsurface utility detection, reducing manual inspection effort.
 
 YOLOv5 Variants (from smallest to largest)
-yolov5n – Nano (fastest, lightest, less accurate)
+-> yolov5n – Nano (fastest, lightest, less accurate)
 
-yolov5s – Small (used in this project, ideal for limited datasets like GPR)
+-> yolov5s – Small (used in this project, ideal for limited datasets like GPR)
 
-yolov5m – Medium
+-> yolov5m – Medium
 
-yolov5l – Large
+-> yolov5l – Large
 
-yolov5x – Extra Large (most accurate, but heavier)
+-> yolov5x – Extra Large (most accurate, but heavier)
 
 ### Dataset Structure for YOLOv5
 To train YOLOv5, the dataset must follow this specific format:
