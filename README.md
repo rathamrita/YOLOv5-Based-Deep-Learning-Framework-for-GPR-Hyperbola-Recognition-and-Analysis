@@ -234,9 +234,13 @@ This shows: Better detection accuracy, Near-zero false positives/negatives, Good
 <img width="1406" height="270" alt="image" src="https://github.com/user-attachments/assets/b529a526-e09c-46ea-97f5-bf52e0f37963" />
 
 1st image - hyperbola detection in Speckle Noise + CLAHE
+
 2nd image - hyperbola detection in Horizontal Stretch + CLAHE
+
 3rd image - hyperbola detection in Flip + CLAHE
+
 4th image - hyperbola detection in Vertial Stretch + CLAHE
+
 5th image - hyperbola detection in Gaussian Noise + CLAHE
 
 #### 8f. Hyperbolas detection in ground truth boxes vs predicted boxes
@@ -259,7 +263,51 @@ inverticalstretch : 	Even under vertical distortion, the model maintains solid a
 
 gaussiannoise (different image)	Although noise is again present and the hyperbola is partially faint, the prediction is very close to GT — just a slight miss. Still, high confidence and precision.
 
-#### 8f. Hyperbolas detection in ground truth boxes vs predicted boxes
+## 9. The Real GPR Test with real world GPR images - 2nd Testing
+
+Using real-world data from GPR_Data tests how well your model:
+
+-> Handles real soil textures and noise patterns
+
+-> Detects true subsurface hyperbolas not seen in training
+
+-> Maintains low false positives despite domain shift
+
+-> If the model detects hyperbolas well here, it means it's not overfitting to the stimulated domain.
+
+Data Source 1 : https://github.com/LCSkhalid/GPR_Data
+
+According this paper, following are the results:
+
+<img width="967" height="586" alt="image" src="https://github.com/user-attachments/assets/30433a7c-5b0a-4377-a0c9-c34c5479581a" />
+
+First and second images have Hyperbolas due to presence of utilities
+
+Third and fourth images do not have hyperbolas, cavities are present.
+
+Our model should also behave the same, it should detect hyperbolas in only first and second images
+
+Lets see how this model behaves
+
+<img width="355" height="367" alt="image" src="https://github.com/user-attachments/assets/2a84e75a-6ee6-4ed4-847f-32b60359c0d5" />
+
+Correct Interpretation of Image 1
+
+<img width="347" height="365" alt="image" src="https://github.com/user-attachments/assets/0f33e12a-77a3-4314-af50-dee7ada28b23" />
+
+Correct Interpretation of Image 2
+
+<img width="351" height="376" alt="image" src="https://github.com/user-attachments/assets/472f9ccd-dd32-4be3-8096-55410d52437a" />
+
+Wrong Interpretation of Image 3, its a cavity. Should not have detected any hyperbolas
+
+<img width="351" height="377" alt="image" src="https://github.com/user-attachments/assets/bb10604e-0ece-4a3c-9309-16cdd03c2839" />
+
+Correct Interpretation of Image 4, it didn't detect any hyperbolas
+
+
+
+
 
 
 
