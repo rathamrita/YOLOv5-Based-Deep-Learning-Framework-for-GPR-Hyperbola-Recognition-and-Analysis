@@ -44,6 +44,8 @@ CLAHE + Gaussian Blur
 This step simulates real-world GPR variations (e.g., distortion, noise) and ensures the model learns robust features.
 ## 4. Manual Annotation Using MATLAB Image Labeler
 Used MATLAB Image Labeler for manual bounding box annotations.
+<img width="1915" height="990" alt="matlab 1" src="https://github.com/user-attachments/assets/188791b0-5b4c-4ffb-bda8-659bde30894e" />
+<img width="1911" height="1007" alt="matlab 2" src="https://github.com/user-attachments/assets/ed587f1e-7d1d-40f5-89a9-4595a4dc25a5" />
 
 Each hyperbola, corresponding to a subsurface object, was manually labeled with a bounding box and class name "hyperbola".
 
