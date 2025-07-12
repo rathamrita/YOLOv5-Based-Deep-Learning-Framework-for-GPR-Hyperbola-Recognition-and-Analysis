@@ -105,9 +105,6 @@ yolov5x – Extra Large (most accurate, but heavier)
 Dataset Structure for YOLOv5
 To train YOLOv5, the dataset must follow this specific format:
 
-kotlin
-Copy
-Edit
 yolo_dataset.zip
 ├── images
 │   ├── train
