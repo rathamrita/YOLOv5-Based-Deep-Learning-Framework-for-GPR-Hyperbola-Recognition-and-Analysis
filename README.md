@@ -118,7 +118,7 @@ yolo_dataset.zip
 ### Train-Test Split (80:20)
 To prepare:
 
-Randomly split your 2000 augmented images into:
+Randomly split your 2169 augmented images into:
 
 1735 training images + labels (80%)
 
@@ -144,6 +144,43 @@ val: images/val
 
 nc: 1
 names: ['hyperbola']
+## 7. Clone the YOLOv5 Repository - For Model Training
+!git clone https://github.com/ultralytics/yolov5
+This command clones the official YOLOv5 GitHub repository by Ultralytics.
+
+It includes:
+
+-> Predefined model architectures (e.g., yolov5s, yolov5m, yolov5l, yolov5x)
+
+-> Training scripts (train.py), inference scripts (detect.py)
+
+-> Utility modules for dataset loading, image augmentation, visualization, etc.
+
+### Train the Model on Your GPR Dataset (approx 6 - 7 hours)
+!python train.py \
+  --img 256 \
+  --batch 8 \
+  --epochs 50 \
+  --data "/content/GPR_stimulated-YOLO-Dataset/yolo dataset/gpr_data.yaml" \
+  --weights yolov5s.pt \
+  --project runs/train_gpr \
+  --name yolov5s_gpr \
+  --save-period 10 \
+  --exist-ok
+### Check Saved Model Weights
+!ls runs/train_gpr/yolov5s_gpr/weights/
+### Run Inference on Test Images
+!python detect.py \
+  --weights runs/train_gpr/yolov5s_gpr/weights/best.pt \
+  --img 256 \
+  --conf 0.3 \
+  --source "/content/GPR_stimulated-YOLO-Dataset/yolo dataset/images/test" \
+  --name yolov5_infer \
+  --save-txt \
+  --exist-ok
+Below shows the results:
+<img width="1203" height="177" alt="image" src="https://github.com/user-attachments/assets/4b36658d-4daf-4ab5-bd94-365e43893a5d" />
+
 
 
 
