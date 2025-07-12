@@ -54,7 +54,9 @@ Why? Automated detection requires ground truth bounding boxes to learn the locat
 Alternative Tool: Open command prompt in local: labelImg
 
 pip install labelImg
+
 labelImg
+
 Opens a GUI to load the augmented image folder and draw bounding boxes.
 
 For each box, enter label: hyperbola
@@ -178,12 +180,86 @@ It includes:
   --name yolov5_infer \
   --save-txt \
   --exist-ok
+  
 Below shows the results:
+
 <img width="1203" height="177" alt="image" src="https://github.com/user-attachments/assets/4b36658d-4daf-4ab5-bd94-365e43893a5d" />
 
+## 8. INTERPRETATIONS
 
+#### 8a.Box Loss over Epochs
 
+<img width="647" height="448" alt="image" src="https://github.com/user-attachments/assets/e7350318-5eff-474b-8ce5-8e21d059edfd" />
 
+<img width="746" height="381" alt="image" src="https://github.com/user-attachments/assets/00c59e55-084b-495c-90f7-040b9d952458" />
+
+#### 8b.Objectness Loss over Epochs
+
+<img width="647" height="458" alt="image" src="https://github.com/user-attachments/assets/8eeef7ce-0fcb-4e50-b138-e9aa91a76f66" />
+
+<img width="753" height="378" alt="image" src="https://github.com/user-attachments/assets/f976783c-2935-45e5-b843-9de02292ed5a" />
+
+#### 8c.mAP@0.5 over Epochs
+
+<img width="516" height="363" alt="image" src="https://github.com/user-attachments/assets/05540d31-b97d-4651-b975-5c0431afcfcf" />
+
+<img width="748" height="383" alt="image" src="https://github.com/user-attachments/assets/9796fe0c-8605-493c-9505-b7af3b98ba68" />
+
+#### 8d.Box and Objectness Loss per Epoch
+
+<img width="657" height="552" alt="image" src="https://github.com/user-attachments/assets/81bfd8d0-22c2-44d3-9a20-abdf55cebf10" />
+
+<img width="755" height="420" alt="image" src="https://github.com/user-attachments/assets/ec36b160-be65-4dee-a624-96abd02e66da" />
+
+-> All four loss curves are consistently decreasing and flattening out around epoch 35–40.
+
+-> Validation losses remain lower than training losses, especially for objectness loss — this suggests:
+
+* Good generalization * No overfitting
+
+-> Losses converge smoothly, no spikes → indicating a stable training process.
+
+#### 8e. Validation Metrics per Epoch
+
+<img width="648" height="550" alt="image" src="https://github.com/user-attachments/assets/e2dd453d-2a9f-4b03-bff9-31074c829f83" />
+
+-> All metrics rise sharply in the first few epochs (0–5) and plateau near-perfect scores by ~epoch 10.
+
+-> Final values are: Precision ≈ 1.0, Recall ≈ 1.0, mAP@0.5 ≈ 1.0
+
+This shows: Better detection accuracy, Near-zero false positives/negatives, Good model convergence
+
+#### 8f. Hyperbolas detected in predicted bounding boxes 
+
+<img width="1406" height="270" alt="image" src="https://github.com/user-attachments/assets/b529a526-e09c-46ea-97f5-bf52e0f37963" />
+
+1st image - hyperbola detection in Speckle Noise + CLAHE
+2nd image - hyperbola detection in Horizontal Stretch + CLAHE
+3rd image - hyperbola detection in Flip + CLAHE
+4th image - hyperbola detection in Vertial Stretch + CLAHE
+5th image - hyperbola detection in Gaussian Noise + CLAHE
+
+#### 8f. Hyperbolas detection in ground truth boxes vs predicted boxes
+
+Each GPR image has:
+
+🟩 Green box = Ground Truth (GT) bounding box (manually labeled)
+
+🔵 Blue box = YOLOv5 predicted bounding box
+
+<img width="1802" height="381" alt="image" src="https://github.com/user-attachments/assets/601cbddf-b611-4aa6-8630-370f8ff2e233" />
+
+gaussiannoise :	Despite the noisy background, the predicted box (blue) perfectly overlaps the GT box (green). Robust noise resistance.
+
+horizontalstretch :	The shape of the hyperbola is distorted horizontally. Yet, the model accurately localized it. Good spatial generalization.
+
+inflip :	The flipped image is correctly detected, with near-perfect box alignment. Suggests the model learned symmetry-invariant features. 
+
+inverticalstretch : 	Even under vertical distortion, the model maintains solid alignment with GT. Shows scale adaptability.
+
+gaussiannoise (different image)	Although noise is again present and the hyperbola is partially faint, the prediction is very close to GT — just a slight miss. Still, high confidence and precision.
+
+#### 8f. Hyperbolas detection in ground truth boxes vs predicted boxes
 
 
 
