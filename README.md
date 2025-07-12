@@ -102,7 +102,8 @@ yolov5m – Medium
 yolov5l – Large
 
 yolov5x – Extra Large (most accurate, but heavier)
-Dataset Structure for YOLOv5
+
+### Dataset Structure for YOLOv5
 To train YOLOv5, the dataset must follow this specific format:
 
 yolo_dataset.zip
