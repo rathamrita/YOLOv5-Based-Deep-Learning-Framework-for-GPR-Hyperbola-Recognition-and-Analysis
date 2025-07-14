@@ -4,11 +4,13 @@ Objective - This project uses YOLOv5 to detect hyperbolas in Ground Penetrating 
 ## Methodology : The pipeline includes data preprocessing, training, evaluation, and visualization for efficient subsurface analysis. Only the core coding steps are described here, with detailed explanations provided for each. 
 
 ## STEP 1. Dataset Description
-Used 241 stimulated Ground Penetrating Radar (GPR) images.
+This project utilizes a set of 241 simulated Ground Penetrating Radar (GPR) radargrams provided by the Geospatial Intelligence and Application Laboratory at IIT Tirupati Navavishkar I-Hub Foundation (IITTNiF). These simulations were generated using GPRMax, varying key parameters such as pipe material, depth, diameter, orientation, and subsurface composition to mimic diverse underground scenarios.
 
-Captures subsurface reflections with hyperbolic patterns.
+Each image captures typical GPR reflections, often showcasing hyperbolic patterns indicative of subsurface utilities. As part of the experiment, data augmentation techniques were applied to this limited dataset to effectively expand training data volume and enhance the model's robustness.
 
-The dataset is not publicly disclosed at this stage.
+#### | Note: The original dataset is currently not publicly available.
+
+The stimulated Gpr image below:
 <img width="1058" height="610" alt="image" src="https://github.com/user-attachments/assets/db3ad935-8950-40b5-a569-5a60d8150a65" />
 
 ## STEP 2. Preprocessing: Image Cropping
@@ -21,23 +23,23 @@ Images were saved in .png format with a uniform resolution of 256 × 256.
 
 ## STEP 3. To improve generalization and increase dataset size, the following augmentations were applied to each original image:
 
-Original
+a. Original
 
-CLAHE (Contrast Limited Adaptive Histogram Equalization)
+b. CLAHE (Contrast Limited Adaptive Histogram Equalization)
 
-CLAHE + Horizontal Stretch
+c. CLAHE + Horizontal Stretch
 
-CLAHE + Vertical Stretch
+d. CLAHE + Vertical Stretch
 
-CLAHE + Flip (Horizontal)
+e. CLAHE + Flip (Horizontal)
 
-CLAHE + Rotated
+f. CLAHE + Rotated
 
-CLAHE + Gaussian Noise
+g. CLAHE + Gaussian Noise
 
-CLAHE + Speckle Noise
+h. CLAHE + Speckle Noise
 
-CLAHE + Gaussian Blur
+i. CLAHE + Gaussian Blur
 
 ✅ Total augmented images = 241 original × 9 variations = 2169 images (all 256 × 256)
 <img width="1400" height="242" alt="image" src="https://github.com/user-attachments/assets/eb1cbf67-2dbe-4ac2-bbbd-77550b2bdae7" />
@@ -69,14 +71,16 @@ Annotations were saved in Pascal VOC .xml format (default for labelImg).
 
 Converted these .xml files into:
 
--> .csv format for use with RetinaNet.
+-> .csv format for use with RetinaNet (A R-CNN model for Object Detection, not used in this project)
 
 -> .txt format (YOLO format: class x_center y_center width height) for use with YOLOv5. This becomes the labels of each hyperbolas detected.
+
 The.txt file shouls look like this
 
 <img width="440" height="292" alt="image" src="https://github.com/user-attachments/assets/04c70a5d-21aa-4ad0-8b49-db1c1c03778d" />
 
 This ensures compatibility with the chosen object detection framework.
+
 ## STEP 6. Hyperbola Detection using YOLOv5
 ✅ Why Use YOLOv5?
 YOLO (You Only Look Once) is a real-time object detection model known for its:
