@@ -1,7 +1,7 @@
-# YOLOv5-Based-Deep-Learning-Framework-for-GPR-Hyperbola-Recognition-and-Analysis
-Objective - This project uses YOLOv5 to detect hyperbolas in Ground Penetrating Radar (GPR) images, enabling automated identification of buried objects. Traditional GPR analysis is time-consuming and often subjective, with results varying from expert to expert. By automating the detection of subsurface features like utilities or voids, this system improves consistency, speeds up decision-making, and minimizes human error. The model can be integrated into real-time field analysis tools for applications in construction, archaeology, and geotechnical surveys—leading to cost savings, enhanced safety, and more efficient underground investigations.
+# YOLOv5-Based Deep Learning Framework for GPR Hyperbola Detection and Analysis Using Simulated Data and Real-World GPR Image Testing
+Objective - This project uses YOLOv5 to detect hyperbolas in Ground Penetrating Radar (GPR) images, enabling automated identification of buried underground utilities in different conditions. Traditional GPR analysis is time-consuming and often subjective, with results varying from expert to expert. By automating the detection of subsurface features like underground utilities and voids , this system improves consistency, speeds up decision-making, and minimizes human error. The model can be integrated into real-time field analysis tools for applications in subsurface utility management, civil construction, and geotechnical surveys—leading to cost savings, enhanced safety, and more efficient underground investigations.
 
-## Methodology : The pipeline includes data preprocessing, training, evaluation, and visualization for efficient subsurface analysis. Only the core coding steps are described here, with detailed explanations provided for each. 
+## Methodology : The pipeline includes data pre-processing, training, evaluation, and visualization for efficient subsurface utility analysis. Only the core coding steps are described here, with detailed explanations provided for each step. 
 
 ## STEP 1. Dataset Description
 This project utilizes a set of 241 simulated Ground Penetrating Radar (GPR) radargrams provided by the Geospatial Intelligence and Application Laboratory at IIT Tirupati Navavishkar I-Hub Foundation (IITTNiF). These simulations were generated using GPRMax, varying key parameters such as pipe material, depth, diameter, orientation, and subsurface composition to mimic diverse underground scenarios.
@@ -10,36 +10,37 @@ Each image captures typical GPR reflections, often showcasing hyperbolic pattern
 
 #### | Note: The original dataset is currently not publicly available.
 
-The stimulated Gpr image below:
+An example of stimulated GPR image is given below:
 <img width="1058" height="610" alt="image" src="https://github.com/user-attachments/assets/db3ad935-8950-40b5-a569-5a60d8150a65" />
 
-## STEP 2. Preprocessing: Image Cropping
+## STEP 2. Pre-processing: Image Cropping
 All GPR images were cropped to remove irrelevant background areas.
 
-This step helps the model focus on meaningful regions containing hyperbolic signatures.
+This step helps the model to focus on meaningful regions containing hyperbolic signatures.
 
 Images were saved in .png format with a uniform resolution of 256 × 256.
 <img width="942" height="601" alt="image" src="https://github.com/user-attachments/assets/93104cd1-78bb-45bc-a656-38e5f9031002" />
 
-## STEP 3. To improve generalization and increase dataset size, the following augmentations were applied to each original image:
+## STEP 3. DATA AUGMENTATION : 
+To improve generalization and increase dataset size, the following augmentations were applied to each original image:
 
-a. Original
+1. Original
 
-b. CLAHE (Contrast Limited Adaptive Histogram Equalization)
+2. CLAHE (Contrast Limited Adaptive Histogram Equalization)
 
-c. CLAHE + Horizontal Stretch
+3. CLAHE + Horizontal Stretch
 
-d. CLAHE + Vertical Stretch
+4. CLAHE + Vertical Stretch
 
-e. CLAHE + Flip (Horizontal)
+5. CLAHE + Flip (Horizontal)
 
-f. CLAHE + Rotated
+6. CLAHE + Rotated
 
-g. CLAHE + Gaussian Noise
+7. CLAHE + Gaussian Noise
 
-h. CLAHE + Speckle Noise
+8. CLAHE + Speckle Noise
 
-i. CLAHE + Gaussian Blur
+9. CLAHE + Gaussian Blur
 
 ✅ Total augmented images = 241 original × 9 variations = 2169 images (all 256 × 256)
 <img width="1400" height="242" alt="image" src="https://github.com/user-attachments/assets/eb1cbf67-2dbe-4ac2-bbbd-77550b2bdae7" />
@@ -50,25 +51,27 @@ This step simulates real-world GPR variations (e.g., distortion, noise) and ensu
 ## STEP 4. Manual Annotation Using MATLAB Image Labeler
 Used MATLAB Image Labeler for manual bounding box annotations.
 
-An image opened in MALTLAB image labeler GUI from the local directory using cmd.
+An image opened in MALTLAB image labeler GUI from the local directory using command(cmd) prompt.
 <img width="1915" height="990" alt="matlab 1" src="https://github.com/user-attachments/assets/188791b0-5b4c-4ffb-bda8-659bde30894e" />
 
-Each hyperbola, corresponding to a subsurface object, was manually labeled with a bounding box and class name "hyperbola".
+Each hyperbola, corresponding to a subsurface utility, was manually labeled with a bounding box and class name "hyperbola".
 <img width="1911" height="1007" alt="matlab 2" src="https://github.com/user-attachments/assets/ed587f1e-7d1d-40f5-89a9-4595a4dc25a5" />
 
-Why? Automated detection requires ground truth bounding boxes to learn the location and shape of hyperbolas.
+Why this is important? Automated detection requires ground truth bounding boxes to learn the location and shape of hyperbolas.
 
-Alternative Tool: Open command prompt in local: labelImg
+Alternative Tool to use image labeller : 
 
-pip install labelImg
+-> Open command prompt in local
 
-labelImg
+-> pip install labelImg
 
-Opens a GUI to load the augmented image folder and draw bounding boxes.
+-> labelImg
 
-For each box, enter label: hyperbola
+-> Opens a GUI to load the augmented image folder and draw bounding boxes.
 
-## STEP 5. Saving and Converting Annotations
+-> For each box, enter label: hyperbola
+
+## STEP 5. Saving and Converting Annotations of outputs
 Annotations were saved in Pascal VOC .xml format (default for labelImg).
 
 Converted these .xml files into:
@@ -80,6 +83,8 @@ Converted these .xml files into:
 The.txt file shouls look like this
 
 <img width="440" height="292" alt="image" src="https://github.com/user-attachments/assets/04c70a5d-21aa-4ad0-8b49-db1c1c03778d" />
+
+The numbers indicate : class, x_center, y_center, width, height
 
 This ensures compatibility with the chosen object detection framework.
 
@@ -287,7 +292,7 @@ Using real-world data from GPR_Data tests how well your model:
 
 -> Maintains low false positives despite domain shift
 
--> If the model detects hyperbolas well here, it means it's not overfitting to the stimulated domain.
+-> If the model detects hyperbolas, it means it's not overfitting to the stimulated domain.
 
 Data Source 1 : https://github.com/LCSkhalid/GPR_Data
 
@@ -305,25 +310,25 @@ Lets see how this model behaves
 
 <img width="355" height="367" alt="image" src="https://github.com/user-attachments/assets/2a84e75a-6ee6-4ed4-847f-32b60359c0d5" />
 
-Correct Interpretation of Image 1
+Correct Interpretation of Image 1, utility present. Hyperbolas detected by the model
 
 <img width="347" height="365" alt="image" src="https://github.com/user-attachments/assets/0f33e12a-77a3-4314-af50-dee7ada28b23" />
 
-Correct Interpretation of Image 2
+Correct Interpretation of Image 2, utility present. Hyperbolas detected by the model
 
 <img width="351" height="376" alt="image" src="https://github.com/user-attachments/assets/472f9ccd-dd32-4be3-8096-55410d52437a" />
 
-Wrong Interpretation of Image 3, its a cavity. Should not have detected any hyperbolas
+Wrong Interpretation of Image 3, cavity present. Should not have detected any hyperbolas, Model overassumes/overlearns the pattern here. It's a case of False Positive.
 
 <img width="351" height="377" alt="image" src="https://github.com/user-attachments/assets/bb10604e-0ece-4a3c-9309-16cdd03c2839" />
 
-Correct Interpretation of Image 4, it didn't detect any hyperbolas
+Correct Interpretation of Image 4, cavity present it didn't detect any hyperbolas. Model successfully discrimnated between an utility and a cavity.
 
 ### Detailed Analysis & Why it Happened?
 
 <img width="750" height="305" alt="image" src="https://github.com/user-attachments/assets/64347b86-8f07-4b03-a754-17fb41316854" />
 
-True Positives (Images 1 & 2)
+#### True Positives (Images 1 & 2)
 
 The model correctly identifies hyperbolas from buried utilities — which means:
 
@@ -331,13 +336,13 @@ The model correctly identifies hyperbolas from buried utilities — which means:
 
 -> It successfully recognizes real-world hyperbola shapes despite domain shift.
 
-🔍 Implication: The core representation of subsurface hyperbolas learned from the synthetic data is valid and useful in real-world scenarios.
+##### 🔍 Implication: The core representation of subsurface hyperbolas learned from the synthetic data is valid and useful in real-world scenarios.
 
-❌ False Positive (Image 3)
+#### ❌ False Positive (Image 3)
 
 -> In an image with a cavity but no hyperbola, the model incorrectly predicted a hyperbola.
 
-🔎 Why this might happen:
+#### 🔎 Why this might happen:
 
 -> Visual artifacts from cavities (especially noisy reflection patterns) might mimic hyperbola shapes.
 
@@ -345,7 +350,7 @@ The model correctly identifies hyperbolas from buried utilities — which means:
 
 -> Overconfidence due to lack of negative (non-hyperbola) examples during training.
 
-🧠 What to do:
+#### 🧠 What to do:
 
 - Adding cavity/no-hyperbola samples during fine-tuning.
 
@@ -353,7 +358,7 @@ The model correctly identifies hyperbolas from buried utilities — which means:
 
 - Trying postprocessing confidence filtering (e.g., ignore predictions <0.4 confidence).
 
-✅ True Negative (Image 4)
+#### ✅ True Negative (Image 4)
 
 -> Here, the model correctly ignored a cavity without a hyperbola.
 
