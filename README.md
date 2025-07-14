@@ -129,32 +129,33 @@ yolo_dataset.zip
 ### Train-Test Split (80:20)
 To prepare:
 
-Randomly split your 2169 augmented images into:
+ * Randomly split your 2169 augmented images into:
 
 1735 training images + labels (80%)
 
 434 validation images + labels (20%)
 
-Ensure that:
+ * Ensure that:
 
 Each image has a corresponding .txt label file in YOLO format.
 
 All label files follow the syntax:
 class x_center y_center width height (all values normalized between 0 and 1)
 
-Save them into appropriate folders:
+ * Save them into appropriate folders:
 
 /images/train, /images/val
 
 /labels/train, /labels/val
 
-Create a gpr_data.yaml file like this:
+ * Create a gpr_data.yaml file like this:
 path: /content/GPR-YOLO-Dataset/yolo_dataset
 train: images/train
 val: images/val
 
 nc: 1
 names: ['hyperbola']
+
 ## STEP 7. Clone the YOLOv5 Repository - For Model Training
 !git clone https://github.com/ultralytics/yolov5
 This command clones the official YOLOv5 GitHub repository by Ultralytics.
