@@ -1,6 +1,6 @@
 # YOLOv5-Based-Deep-Learning-Framework-for-GPR-Hyperbola-Recognition-and-Analysis
-This project uses YOLOv5 to detect hyperbolas in Ground Penetrating Radar (GPR) images, enabling automated identification of buried objects. The pipeline includes data preprocessing, training, evaluation, and visualization for efficient subsurface analysis. Only the core coding steps are described here, with detailed explanations provided for each. Coding file to be uploaded later.
-## 1. Dataset Description
+This project uses YOLOv5 to detect hyperbolas in Ground Penetrating Radar (GPR) images, enabling automated identification of buried objects. The pipeline includes data preprocessing, training, evaluation, and visualization for efficient subsurface analysis. Only the core coding steps are described here, with detailed explanations provided for each. 
+## STEP 1. Dataset Description
 Used 241 stimulated Ground Penetrating Radar (GPR) images.
 
 Captures subsurface reflections with hyperbolic patterns.
@@ -8,7 +8,7 @@ Captures subsurface reflections with hyperbolic patterns.
 The dataset is not publicly disclosed at this stage.
 <img width="1058" height="610" alt="image" src="https://github.com/user-attachments/assets/db3ad935-8950-40b5-a569-5a60d8150a65" />
 
-## 2. Preprocessing: Image Cropping
+## STEP 2. Preprocessing: Image Cropping
 All GPR images were cropped to remove irrelevant background areas.
 
 This step helps the model focus on meaningful regions containing hyperbolic signatures.
@@ -16,7 +16,7 @@ This step helps the model focus on meaningful regions containing hyperbolic sign
 Images were saved in .png format with a uniform resolution of 256 × 256.
 <img width="942" height="601" alt="image" src="https://github.com/user-attachments/assets/93104cd1-78bb-45bc-a656-38e5f9031002" />
 
-## 3. To improve generalization and increase dataset size, the following augmentations were applied to each original image:
+## STEP 3. To improve generalization and increase dataset size, the following augmentations were applied to each original image:
 
 Original
 
@@ -42,7 +42,7 @@ CLAHE + Gaussian Blur
 <img width="1410" height="245" alt="image" src="https://github.com/user-attachments/assets/52455f69-63e3-41c0-9205-7c93f7219603" />
 
 This step simulates real-world GPR variations (e.g., distortion, noise) and ensures the model learns robust features.
-## 4. Manual Annotation Using MATLAB Image Labeler
+## STEP 4. Manual Annotation Using MATLAB Image Labeler
 Used MATLAB Image Labeler for manual bounding box annotations.
 <img width="1915" height="990" alt="matlab 1" src="https://github.com/user-attachments/assets/188791b0-5b4c-4ffb-bda8-659bde30894e" />
 <img width="1911" height="1007" alt="matlab 2" src="https://github.com/user-attachments/assets/ed587f1e-7d1d-40f5-89a9-4595a4dc25a5" />
@@ -61,7 +61,7 @@ Opens a GUI to load the augmented image folder and draw bounding boxes.
 
 For each box, enter label: hyperbola
 
-## 5. Saving and Converting Annotations
+### STEP 5. Saving and Converting Annotations
 Annotations were saved in Pascal VOC .xml format (default for labelImg).
 
 Converted these .xml files into:
@@ -74,7 +74,7 @@ The.txt file shouls look like this
 <img width="440" height="292" alt="image" src="https://github.com/user-attachments/assets/04c70a5d-21aa-4ad0-8b49-db1c1c03778d" />
 
 This ensures compatibility with the chosen object detection framework.
-## 6. Hyperbola Detection using YOLOv5
+### STEP 6. Hyperbola Detection using YOLOv5
 ✅ Why Use YOLOv5?
 YOLO (You Only Look Once) is a real-time object detection model known for its:
 
@@ -146,7 +146,7 @@ val: images/val
 
 nc: 1
 names: ['hyperbola']
-## 7. Clone the YOLOv5 Repository - For Model Training
+### STEP 7. Clone the YOLOv5 Repository - For Model Training
 !git clone https://github.com/ultralytics/yolov5
 This command clones the official YOLOv5 GitHub repository by Ultralytics.
 
@@ -185,7 +185,7 @@ Below shows the results:
 
 <img width="1203" height="177" alt="image" src="https://github.com/user-attachments/assets/4b36658d-4daf-4ab5-bd94-365e43893a5d" />
 
-## 8. INTERPRETATIONS
+### STEP 8. INTERPRETATIONS
 
 #### 8a.Box Loss over Epochs
 
@@ -263,7 +263,7 @@ inverticalstretch : 	Even under vertical distortion, the model maintains solid a
 
 gaussiannoise (different image)	Although noise is again present and the hyperbola is partially faint, the prediction is very close to GT — just a slight miss. Still, high confidence and precision.
 
-## 9. The Real GPR Test with real world GPR images - 2nd Testing
+### STEP 9. The Real GPR Test with real world GPR images with our pretrained model - 2nd Testing
 
 Using real-world data from GPR_Data tests how well your model:
 
@@ -345,7 +345,7 @@ The model correctly identifies hyperbolas from buried utilities — which means:
 
 💡 This is a good sign: Indicates some level of learned discrimination between hyperbola-like vs. non-hyperbola patterns.
 
-📈 Insights & Next Steps
+### STEP 10. Insights & Next Steps
 
 👍 Strengths : 
 
