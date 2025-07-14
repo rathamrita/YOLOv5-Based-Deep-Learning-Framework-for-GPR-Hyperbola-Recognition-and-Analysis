@@ -168,7 +168,7 @@ It includes:
 
 -> Utility modules for dataset loading, image augmentation, visualization, etc.
 
-### Train the Model on Your GPR Dataset (approx 6 - 7 hours)
+### Training the Model on GPR Dataset (Took approx 6 - 7 hours, run on T4 GPU Google Colab)
 !python train.py \
   --img 256 \
   --batch 8 \
