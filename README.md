@@ -292,7 +292,7 @@ Using real-world data from GPR_Data tests how well your model:
 
 -> Maintains low false positives despite domain shift
 
--> If the model detects hyperbolas, it means it's not overfitting to the stimulated domain.
+-> If the model detects hyperbolas in the real world gpr images correctly, it means it's not overfitting to the stimulated domain i.e., our pretained model.
 
 Data Source 1 : https://github.com/LCSkhalid/GPR_Data
 
