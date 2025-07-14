@@ -1,5 +1,8 @@
 # YOLOv5-Based-Deep-Learning-Framework-for-GPR-Hyperbola-Recognition-and-Analysis
-This project uses YOLOv5 to detect hyperbolas in Ground Penetrating Radar (GPR) images, enabling automated identification of buried objects. The pipeline includes data preprocessing, training, evaluation, and visualization for efficient subsurface analysis. Only the core coding steps are described here, with detailed explanations provided for each. 
+Objective - This project uses YOLOv5 to detect hyperbolas in Ground Penetrating Radar (GPR) images, enabling automated identification of buried objects. Traditional GPR analysis is time-consuming and often subjective, with results varying from expert to expert. By automating the detection of subsurface features like utilities or voids, this system improves consistency, speeds up decision-making, and minimizes human error. The model can be integrated into real-time field analysis tools for applications in construction, archaeology, and geotechnical surveys—leading to cost savings, enhanced safety, and more efficient underground investigations.
+
+## Methodology : The pipeline includes data preprocessing, training, evaluation, and visualization for efficient subsurface analysis. Only the core coding steps are described here, with detailed explanations provided for each. 
+
 ## STEP 1. Dataset Description
 Used 241 stimulated Ground Penetrating Radar (GPR) images.
 
@@ -61,7 +64,7 @@ Opens a GUI to load the augmented image folder and draw bounding boxes.
 
 For each box, enter label: hyperbola
 
-### STEP 5. Saving and Converting Annotations
+## STEP 5. Saving and Converting Annotations
 Annotations were saved in Pascal VOC .xml format (default for labelImg).
 
 Converted these .xml files into:
@@ -74,7 +77,7 @@ The.txt file shouls look like this
 <img width="440" height="292" alt="image" src="https://github.com/user-attachments/assets/04c70a5d-21aa-4ad0-8b49-db1c1c03778d" />
 
 This ensures compatibility with the chosen object detection framework.
-### STEP 6. Hyperbola Detection using YOLOv5
+## STEP 6. Hyperbola Detection using YOLOv5
 ✅ Why Use YOLOv5?
 YOLO (You Only Look Once) is a real-time object detection model known for its:
 
@@ -146,7 +149,7 @@ val: images/val
 
 nc: 1
 names: ['hyperbola']
-### STEP 7. Clone the YOLOv5 Repository - For Model Training
+## STEP 7. Clone the YOLOv5 Repository - For Model Training
 !git clone https://github.com/ultralytics/yolov5
 This command clones the official YOLOv5 GitHub repository by Ultralytics.
 
@@ -185,7 +188,7 @@ Below shows the results:
 
 <img width="1203" height="177" alt="image" src="https://github.com/user-attachments/assets/4b36658d-4daf-4ab5-bd94-365e43893a5d" />
 
-### STEP 8. INTERPRETATIONS
+## STEP 8. INTERPRETATIONS
 
 #### 8a.Box Loss over Epochs
 
@@ -263,7 +266,7 @@ inverticalstretch : 	Even under vertical distortion, the model maintains solid a
 
 gaussiannoise (different image)	Although noise is again present and the hyperbola is partially faint, the prediction is very close to GT — just a slight miss. Still, high confidence and precision.
 
-### STEP 9. The Real GPR Test with real world GPR images with our pretrained model - 2nd Testing
+## STEP 9. The Real GPR Test with real world GPR images with our pretrained model - 2nd Testing
 
 Using real-world data from GPR_Data tests how well your model:
 
@@ -345,7 +348,7 @@ The model correctly identifies hyperbolas from buried utilities — which means:
 
 💡 This is a good sign: Indicates some level of learned discrimination between hyperbola-like vs. non-hyperbola patterns.
 
-### STEP 10. Insights & Next Steps
+## STEP 10. Insights & Next Steps
 
 👍 Strengths : 
 
